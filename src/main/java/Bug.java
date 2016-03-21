@@ -19,6 +19,9 @@ public class Bug {
         pathsParam = ParameterDescriptor.type("paths",
                                               (Class<? extends Map<String, String>>) new TypeLiteral<Map<String, String>>() {}.getRawType(),
                                               (Class<? extends Map<String, Pattern>>) new TypeLiteral<Map<String, Pattern>>() {}.getRawType())
+// using the next two lines instead make the problem go away.
+//                                              (Class<Map<String, String>>) new TypeLiteral<Map<String, String>>() {}.getRawType(),
+//                                              (Class<Map<String, Pattern>>) new TypeLiteral<Map<String, Pattern>>() {}.getRawType())
                 .transform(inputMap -> inputMap.entrySet().stream()
                         .collect(toMap(Map.Entry::getKey, e -> Pattern.compile(e.getValue()))))
                 .build();
